@@ -4,6 +4,3 @@
 [submodule "code/veld_code__word2vec"]
 	path = code/veld_code__word2vec
 	url = https://github.com/veldhub/veld_code__word2vec.git
-[submodule "code/veld_code__wordembeddings_postgres_db"]
-	path = code/veld_code__wordembeddings_postgres_db
-	url = https://github.com/veldhub/veld_code__wordembeddings_postgres_db.git
