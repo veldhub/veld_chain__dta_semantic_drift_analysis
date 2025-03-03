@@ -4,3 +4,6 @@
 [submodule "code/veld_code__word2vec"]
 	path = code/veld_code__word2vec
 	url = https://github.com/veldhub/veld_code__word2vec.git
+[submodule "code/veld_code__xml_xslt_transformer"]
+	path = code/veld_code__xml_xslt_transformer
+	url = https://github.com/veldhub/veld_code__xml_xslt_transformer.git
