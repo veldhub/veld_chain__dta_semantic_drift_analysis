@@ -3,13 +3,10 @@ x-veld:
 
 services:
   veld_step_2_preprocess:
-    extends:
-      file: ./code/veld_code__xml_xslt_transformer/veld.yaml
-      service: veld
+    build: ./code/preprocess/
+    command: python /veld/code/preprocess.py
     volumes:
-      - ./data/step_1_raw_data/dta-lingattr-tei_2020-07-27/:/veld/input/xml/
-      - ./data/step_2_xslt/:/veld/input/xsl/
+      - ./code/preprocess/src/:/veld/code/
+      - ./data/step_1_raw_data/dta-lingattr-tei_2020-07-27/:/veld/input/
       - ./data/step_2_preprocessed_data/:/veld/output/
-    environment:
-      in_xsl_file: "transformation.xsl"
 
