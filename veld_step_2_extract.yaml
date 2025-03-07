@@ -1,0 +1,12 @@
+x-veld:
+  chain:
+
+services:
+  veld_step_2_preprocess:
+    build: ./code/extract/
+    command: python /veld/code/extract.py
+    volumes:
+      - ./code/extract/src/:/veld/code/
+      - ./data/step_1_raw/dta-lingattr-tei_2020-07-27/:/veld/input/
+      - ./data/step_2_extracted/:/veld/output/
+
