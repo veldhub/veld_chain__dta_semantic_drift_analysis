@@ -2,7 +2,7 @@ x-veld:
   chain:
 
 services:
-  veld_step_2_preprocess:
+  veld_step_2_extract:
     build: ./code/extract/
     command: python /veld/code/extract.py
     volumes:
