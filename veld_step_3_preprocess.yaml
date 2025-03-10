@@ -1,0 +1,13 @@
+x-veld:
+  chain:
+
+services:
+  veld_step_3_preprocess_lowercase:
+    extends:
+      file: ./code/veld_code__wordembeddings_preprocessing/veld_preprocess_lowercase.yaml
+      service: veld_preprocess_lowercase
+    volumes:
+      - ./data/step_2_extracted/:/veld/input/
+      - ./data/step_3_preprocessed/:/veld/output/data/
+      - ./data/step_3_preprocessed/:/veld/output/metadata/
+
