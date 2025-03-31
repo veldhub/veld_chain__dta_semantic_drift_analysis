@@ -1,0 +1,16 @@
+x-veld:
+  chain:
+
+services:
+
+  veld_step_4_preprocess_lowercase:
+    extends:
+      file: ./code/veld_code__nlp_generic_preprocessing/veld_preprocess_change_case.yaml
+      service: veld_preprocess_change_case
+    volumes:
+      - ./data/step_3_preprocessed_split_sentences/:/veld/input/
+      - ./data/step_4_preprocessed_lowercase/:/veld/output/data/
+    environment:
+      set_case: "lower"
+      cpu_count: 14
+
