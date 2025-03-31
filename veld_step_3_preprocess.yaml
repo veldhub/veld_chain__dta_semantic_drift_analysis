@@ -2,12 +2,41 @@ x-veld:
   chain:
 
 services:
-  veld_step_3_preprocess_lowercase:
+
+  veld_step_3_preprocess_split_sentences:
     extends:
-      file: ./code/veld_code__wordembeddings_preprocessing/veld_preprocess_lowercase.yaml
-      service: veld_preprocess_lowercase
+      file: ./code/veld_code__nlp_generic_preprocessing/veld_preprocess_split_sentences.yaml
+      service: veld_preprocess_split_sentences
     volumes:
       - ./data/step_2_extracted/:/veld/input/
       - ./data/step_3_preprocessed/:/veld/output/data/
-      - ./data/step_3_preprocessed/:/veld/output/metadata/
+    environment:
+      language: "german"
+      txt_has_lines: false
+      ignore_file: ".gitkeep"
+
+  #veld_step_3_preprocess_lowercase:
+  #  extends:
+  #    file: ./code/veld_code__nlp_generic_preprocessing/veld_preprocess_change_case.yaml
+  #    service: veld_preprocess_change_case
+  #  volumes:
+  #    - ./data/step_2_extracted/:/veld/input/
+  #    - ./data/step_3_preprocessed/:/veld/output/data/
+  #    - ./data/step_3_preprocessed/:/veld/output/metadata/
+  #  environment:
+  #    in_file: 167.txt
+  #    out_file: 167.txt
+  #    out_metadata_file: bla.yaml
+  #    out_data_description: "bla ble blo"
+  #    set_case: "lower"
+  #    #cpu_count: 4
+    
+  #veld_step_3_preprocess_remove_punctuation:
+  #  extends:
+  #    file: ./code/veld_code__wordembeddings_preprocessing/veld_preprocess_remove_punctuation.yaml
+  #    service: veld_preprocess_remove_punctuation
+  #  volumes:
+  #    - ./data/step_2_extracted/:/veld/input/
+  #    - ./data/step_3_preprocessed/:/veld/output/data/
+  #    - ./data/step_3_preprocessed/:/veld/output/metadata/
 
