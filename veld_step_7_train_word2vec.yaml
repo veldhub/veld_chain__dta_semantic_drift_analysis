@@ -1,0 +1,26 @@
+x-veld:
+  chain:
+
+services:
+
+  veld_step_7_train_word2vec:
+    extends:
+      file: ./code/veld_code__word2vec/veld_train.yaml
+      service: veld_train
+    volumes:
+      - ./data/step_6_clean/clean/:/veld/input/
+      - ./data/step_7_word2vec_models/:/veld/output/
+    environment:
+      epochs: 50
+      vector_size: 200
+      window: 3
+      min_count: 5
+      cpu_count: 14
+
+  #veld_step_7_notebook_word2vec:
+  #  extends:
+  #    file: ./code/veld_code__word2vec/veld_jupyter_notebook.yaml
+  #    service: veld_jupyter_notebook
+  #  volumes:
+  #    - ./data/step_7_word2vec_models/:/veld/input/
+

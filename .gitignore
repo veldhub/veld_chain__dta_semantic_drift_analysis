@@ -1,3 +1,2 @@
-/data/step_1_raw/
-/data/step_2_extracted/
-/data/step_3_preprocessed/
+/data/
+**/.ipynb_checkpoints
