@@ -7,5 +7,6 @@ services:
       - 8888:8888
     volumes:
       - ./code/step_8_analyse_semantic_drift/:/veld/code/
-      - ./data/step_7_word2vec_models/:/veld/input/
+      - ./data/step_7_word2vec_models__vs300_w6_mc10/:/veld/input/
+      - ./data/step_8_analysis/:/veld/output/
 
