@@ -24,7 +24,7 @@ git clone --recurse-submodules https://github.com/veldhub/veld_chain__dta_semant
 If you want to reproduce the entirety this repo, you can do this by running this chain veld (see
 inside the file for more information):
 
-** [./veld_step_all.yaml](./veld_step_all.yaml) **
+**[./veld_step_all.yaml](./veld_step_all.yaml)**
 
 ```
 docker compose -f veld_step_all.yaml up
