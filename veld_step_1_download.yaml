@@ -10,7 +10,7 @@ services:
       file: ./code/veld_code__downloader/veld.yaml
       service: veld_downloader
     volumes:
-      - ./data/step_1_raw_data/:/veld/output/
+      - ./data/step_1_raw/:/veld/output/
     environment:
       url: https://www.deutschestextarchiv.de/media/download/dta-lingattr-tei_2020-07-27.zip
       do_extract: true

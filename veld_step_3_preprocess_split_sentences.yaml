@@ -9,7 +9,7 @@ services:
       service: veld_preprocess_split_sentences
     volumes:
       - ./data/step_2_extracted/:/veld/input/
-      - ./data/step_3_preprocessed/:/veld/output/data/
+      - ./data/step_3_preprocessed_split_sentences/:/veld/output/data/
     environment:
       language: "german"
       txt_has_lines: false

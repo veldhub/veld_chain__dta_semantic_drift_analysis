@@ -3,14 +3,14 @@ x-veld:
 
 services:
     
-  veld_step_6_clean:
+  veld_step_6_preprocess_clean:
     extends:
       file: ./code/veld_code__nlp_generic_preprocessing/veld_preprocess_clean.yaml
       service: veld_preprocess_clean
     volumes:
-      - ./data/step_5_remove_punctuation/:/veld/input/
-      - ./data/step_6_clean/clean/:/veld/output/data_clean/
-      - ./data/step_6_clean/dirty/:/veld/output/data_dirty/
+      - ./data/step_5_preprocessed_remove_punctuation/:/veld/input/
+      - ./data/step_6_preprocessed_clean/clean/:/veld/output/data_clean/
+      - ./data/step_6_preprocessed_clean/dirty/:/veld/output/data_dirty/
     environment:
       cpu_count: 14
       min_clean_char_percentage: 80

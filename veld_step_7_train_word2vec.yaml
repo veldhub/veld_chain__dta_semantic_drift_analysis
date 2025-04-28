@@ -8,7 +8,7 @@ services:
       file: ./code/veld_code__word2vec/veld_train.yaml
       service: veld_train
     volumes:
-      - ./data/step_6_clean/clean/:/veld/input/
+      - ./data/step_6_preprocessed_clean/clean/:/veld/input/
       - ./data/step_7_word2vec_models/:/veld/output/
     environment:
       epochs: 50
