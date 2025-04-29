@@ -37,10 +37,10 @@ services:
       file: veld_step_5_preprocess_remove_punctuation.yaml
       service: veld_step_5_preprocess_remove_punctuation
     depends_on:
-      veld_step_3_preprocess_split_sentences:
+      veld_step_4_preprocess_lowercase:
         condition: service_completed_successfully
 
-  veld_step_6_preprocess_clean.yaml:
+  veld_step_6_preprocess_clean:
     extends:
       file: veld_step_6_preprocess_clean.yaml
       service: veld_step_6_preprocess_clean
@@ -48,19 +48,19 @@ services:
       veld_step_5_preprocess_remove_punctuation:
         condition: service_completed_successfully
 
-  #veld_step_7_train_word2vec:
-  #  extends:
-  #    file: veld_step_7_train_word2vec.yaml
-  #    service: veld_step_7_train_word2vec
-  #  depends_on:
-  #    veld_step_6_preprocess_clean:
-  #      condition: service_completed_successfully
-  #
-  #veld_step_8_analyse_semantic_drift:
-  #  extends:
-  #    file: veld_step_8_analyse_semantic_drift.yaml
-  #    service: veld_step_8_analyse_semantic_drift
-  #  depends_on:
-  #    veld_step_7_train_word2vec:
-  #      condition: service_completed_successfully
+  veld_step_7_train_word2vec:
+    extends:
+      file: veld_step_7_train_word2vec.yaml
+      service: veld_step_7_train_word2vec
+    depends_on:
+      veld_step_6_preprocess_clean:
+        condition: service_completed_successfully
+  
+  veld_step_8_analyse_semantic_drift:
+    extends:
+      file: veld_step_8_analyse_semantic_drift.yaml
+      service: veld_step_8_analyse_semantic_drift
+    depends_on:
+      veld_step_7_train_word2vec:
+        condition: service_completed_successfully
 
