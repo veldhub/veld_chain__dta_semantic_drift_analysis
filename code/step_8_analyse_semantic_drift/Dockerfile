@@ -13,6 +13,8 @@ RUN pip install isort==6.0.1
 RUN pip install spacy==3.7.4
 RUN python -m spacy download de_core_news_sm
 RUN pip install hnswlib==0.8.0
+RUN pip install jupyterlab-lsp==5.1.1
+RUN pip install "python-lsp-server[all]"==1.12.2
 RUN jupyter server extension enable --py jupyterlab_code_formatter
 ENV JUPYTER_CONFIG_DIR /veld/storage/jupyter_config/
 WORKDIR /veld/code/
