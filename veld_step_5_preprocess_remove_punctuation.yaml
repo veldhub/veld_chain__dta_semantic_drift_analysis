@@ -3,13 +3,13 @@ x-veld:
 
 services:
     
-  veld_step_5_remove_punctuation:
+  veld_step_5_preprocess_remove_punctuation:
     extends:
       file: ./code/veld_code__nlp_generic_preprocessing/veld_preprocess_remove_punctuation.yaml
       service: veld_preprocess_remove_punctuation
     volumes:
       - ./data/step_4_preprocessed_lowercase/:/veld/input/
-      - ./data/step_5_remove_punctuation/:/veld/output/data/
+      - ./data/step_5_preprocessed_remove_punctuation/:/veld/output/data/
     environment:
       cpu_count: 14
 

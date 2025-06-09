@@ -1,3 +1,5 @@
+x-veld:
+  chain:
 
 services:
   veld_step_8_analyse_semantic_drift:
