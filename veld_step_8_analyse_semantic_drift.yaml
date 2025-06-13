@@ -13,4 +13,5 @@ services:
       - ./data/step_7_word2vec_models__vs300_w6_mc10/:/veld/input/models/
       - ./data/step_6_clean/clean/:/veld/input/texts/
       - ./data/step_8_analysis/:/veld/output/
+      - ./data/step_8_analysis/:/veld/storage/caching/
 
