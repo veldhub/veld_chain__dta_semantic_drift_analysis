@@ -16,6 +16,9 @@ RUN pip install hnswlib==0.8.0
 RUN pip install jupyterlab-lsp==5.1.1
 RUN pip install "python-lsp-server[all]"==1.12.2
 RUN jupyter server extension enable --py jupyterlab_code_formatter
+RUN apt update
+RUN apt install -y libhunspell-dev=1.7.1* hunspell-de-de=20161207*
+RUN pip install hunspell==0.5.5
 ENV JUPYTER_CONFIG_DIR /veld/storage/jupyter_config/
 WORKDIR /veld/code/
 
