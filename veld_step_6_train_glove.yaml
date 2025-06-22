@@ -9,4 +9,14 @@ services:
     volumes:
       - ./data/step_3_preprocessed_clean/clean/:/veld/input/
       - ./data/step_6_glove_models/:/veld/output/
+    environment:
+      verbose: 2
+      memory: 4.0
+      vocab_min_count: 100
+      vector_size: 300
+      max_iter: 50
+      window_size: 7
+      binary: 2
+      num_threads: 16
+      x_max: 10
 
