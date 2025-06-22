@@ -2,15 +2,16 @@ x-veld:
   chain:
 
 services:
-  veld_step_8_analyse_semantic_drift:
+  veld_step_7_analyse_semantic_drift:
     build: ./code/analyse_semantic_drift/
     command: jupyter lab --allow-root --ip='*' --NotebookApp.token='' --NotebookApp.password=''
     ports:
       - 8888:8888
     volumes:
       - ./code/analyse_semantic_drift/:/veld/code/
+      - ./data/step_4_word2vec_models/:/veld/input/models/word2vec/
+      - ./data/step_5_fasttext_models/:/veld/input/models/fasttext/
+      - ./data/step_6_glove_models/:/veld/input/models/glove/
       - ./code/analyse_semantic_drift/jupyter_config/:/veld/storage/jupyter_config/
-      - ./data/step_7_word2vec_models__vs300_w6_mc10/:/veld/input/models/
-      - ./data/step_6_clean/clean/:/veld/input/texts/
-      - ./data/step_8_analysis_cache/:/veld/storage/cache/
+      - ./data/step_7_analysis_cache/:/veld/storage/cache/
 
