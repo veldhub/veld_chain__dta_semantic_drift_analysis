@@ -19,6 +19,7 @@ RUN jupyter server extension enable --py jupyterlab_code_formatter
 RUN apt update
 RUN apt install -y libhunspell-dev=1.7.1* hunspell-de-de=20161207*
 RUN pip install hunspell==0.5.5
+RUN pip install fasttext==0.9.3
 ENV JUPYTER_CONFIG_DIR /veld/storage/jupyter_config/
 WORKDIR /veld/code/
 

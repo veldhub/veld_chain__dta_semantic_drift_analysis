@@ -14,4 +14,5 @@ services:
       - ./data/step_6_glove_models/:/veld/input/models/glove/
       - ./code/analyse_semantic_drift/jupyter_config/:/veld/storage/jupyter_config/
       - ./data/step_7_analysis_cache/:/veld/storage/cache/
+      - ./data/step_3_preprocessed_clean/clean/:/veld/input/texts/
 
