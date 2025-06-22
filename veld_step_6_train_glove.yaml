@@ -1,0 +1,12 @@
+x-veld:
+  chain:
+
+services:
+  veld_step_6_train_glove:
+    extends:
+      file: ./code/veld_code__glove/veld_train.yaml
+      service: veld_train
+    volumes:
+      - ./data/step_3_preprocessed_clean/clean/:/veld/input/
+      - ./data/step_6_glove_models/:/veld/output/
+
