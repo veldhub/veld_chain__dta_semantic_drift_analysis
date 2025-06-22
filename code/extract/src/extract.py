@@ -4,8 +4,11 @@ from lxml import etree
 
 
 PATH_INPUT = "/veld/input/"
-PATH_OUTPUT= "/veld/output/"
-XMLNS = {"xmlns": "http://www.tei-c.org/ns/1.0"}
+PATH_OUTPUT = "/veld/output/"
+XMLNS = {
+    "xmlns": "http://www.tei-c.org/ns/1.0",
+    "xml": "http://www.w3.org/XML/1998/namespace",
+}
 
 
 def delete_output():
@@ -30,10 +33,7 @@ def extract_decade(xml):
     xpath_publication = xpath_base_search + "[@type='publication']"
     xpath_creation = xpath_base_search + "[@type='creation']"
     xpath_search = xpath_publication + "|" + xpath_creation
-    date = xml.xpath(
-        xpath_search,
-        namespaces=XMLNS
-    )
+    date = xml.xpath(xpath_search, namespaces=XMLNS)
     if date:
         if len(date) == 1:
             decade = date[0].text.split("-")[0][:-1]
@@ -46,12 +46,20 @@ def extract_decade(xml):
 
 def extract_text(xml):
     text = ""
-    for w in xml.xpath("//xmlns:w", namespaces=XMLNS):
-        token = w.attrib.get("norm")
-        if token:
-            text += token
-            if not w.attrib.get("join") == "right":
-                text += " "
+    sentence = ""
+    for s in xml.xpath("//xmlns:s", namespaces=XMLNS):
+        s_id = s.attrib.get(f"{{{XMLNS['xml']}}}id")
+        if "_" not in s_id:
+            text += sentence + "\n"
+            sentence = ""
+        for w in s.xpath(".//xmlns:w", namespaces=XMLNS):
+            token = w.attrib.get("lemma")
+            pos = w.attrib.get("pos")
+            if token and pos:
+                if not pos.startswith("$"):
+                    sentence += token
+                if not w.attrib.get("join") == "right":
+                    sentence += " "
     if not text:
         print("no text found")
     return text
@@ -75,7 +83,6 @@ def main():
                 text = extract_text(xml)
                 path_txt = PATH_OUTPUT + decade + ".txt"
                 persist_text(path_txt, text)
-    
+
 
 main()
-
