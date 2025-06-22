@@ -10,3 +10,9 @@
 [submodule "code/veld_code__nlp_generic_preprocessing"]
 	path = code/veld_code__nlp_generic_preprocessing
 	url = https://github.com/veldhub/veld_code__nlp_generic_preprocessing.git
+[submodule "code/veld_code__fasttext"]
+	path = code/veld_code__fasttext
+	url = https://github.com/veldhub/veld_code__fasttext.git
+[submodule "code/veld_code__glove"]
+	path = code/veld_code__glove
+	url = https://github.com/veldhub/veld_code__glove.git
