@@ -10,5 +10,5 @@ services:
       - ./data/step_1_raw/dta-lingattr-tei_2020-07-27/:/veld/input/
       - ./data/step_2_extracted/:/veld/output/
     environment:
-      sample_set: 182,183,184,185,186,187,188
+      sample_set: 183,184,185,186,187
 
