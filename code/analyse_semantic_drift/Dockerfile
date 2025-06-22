@@ -20,6 +20,9 @@ RUN apt update
 RUN apt install -y libhunspell-dev=1.7.1* hunspell-de-de=20161207*
 RUN pip install hunspell==0.5.5
 RUN pip install fasttext==0.9.3
+RUN pip install psycopg[binary]==3.2.9
+RUN pip install pgvector==0.4.1
+RUN pip install joblib==1.5.1
 ENV JUPYTER_CONFIG_DIR /veld/storage/jupyter_config/
 WORKDIR /veld/code/
 

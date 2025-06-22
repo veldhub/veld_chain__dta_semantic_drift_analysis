@@ -1,0 +1,17 @@
+x-veld:
+  chain:
+
+services:
+  veld_step_7_run_embeddings_sql_server:
+    extends:
+      file: ./code/veld_code__embeddings_platform/veld_run_server.yaml
+      service: veld_embeddings_platform_run_server
+    volumes:
+      - ./data/step_7_embeddings_sql_server:/veld/storage/postgres/
+    networks:
+      - veld_postgres
+
+networks:
+  veld_postgres:
+    driver: bridge
+
