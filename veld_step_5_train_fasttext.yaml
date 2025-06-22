@@ -1,0 +1,17 @@
+x-veld:
+  chain:
+
+services:
+  veld_step_5_train_fasttext:
+    extends:
+      file: ./code/veld_code__fasttext/veld_train.yaml
+      service: veld_train
+    volumes:
+      - ./data/step_3_preprocessed_clean/clean/:/veld/input/
+      - ./data/step_5_fasttext_models/:/veld/output/
+    environment:
+      vector_size: 300
+      epochs: 100
+      window_size: 7
+      min_count: 100
+
