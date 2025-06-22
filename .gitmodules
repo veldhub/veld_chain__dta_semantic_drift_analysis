@@ -16,3 +16,6 @@
 [submodule "code/veld_code__glove"]
 	path = code/veld_code__glove
 	url = https://github.com/veldhub/veld_code__glove.git
+[submodule "code/veld_code__embeddings_platform"]
+	path = code/veld_code__embeddings_platform
+	url = https://github.com/veldhub/veld_code__embeddings_platform.git
