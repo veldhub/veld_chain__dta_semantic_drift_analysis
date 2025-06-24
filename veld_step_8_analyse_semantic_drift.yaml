@@ -2,7 +2,7 @@ x-veld:
   chain:
 
 services:
-  veld_step_7_analyse_semantic_drift:
+  veld_step_8_analyse_semantic_drift:
     build: ./code/analyse_semantic_drift/
     command: jupyter lab --allow-root --ip='*' --NotebookApp.token='' --NotebookApp.password=''
     ports:
