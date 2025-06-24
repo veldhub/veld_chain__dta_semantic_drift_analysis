@@ -2,9 +2,8 @@
 
 This repo contains [chain velds](https://zenodo.org/records/13322913) encapsulating semantic drift 
 analysis on the 'Deutsches Textarchiv' (https://www.deutschestextarchiv.de/), using static vector
-word embeddings, trained with [fastText](https://fasttext.cc/), 
-[GloVe](https://nlp.stanford.edu/projects/glove/), and 
-[word2vec](https://code.google.com/archive/p/word2vec/).
+word embeddings, trained with [word2vec](https://code.google.com/archive/p/word2vec/), 
+[fastText](https://fasttext.cc/), and [GloVe](https://nlp.stanford.edu/projects/glove/).
 
 ## requirements
 
@@ -52,49 +51,50 @@ Extracts and transforms the relevant texts, and merging them into text files per
 docker compose -f veld_step_2_extract.yaml up
 ```
 
-**[./veld_step_3_preprocess_split_sentences.yaml](./veld_step_3_preprocess_split_sentences.yaml)** 
 
-Splits the texts into sentences.
+**[./veld_step_3_preprocess_clean.yaml](./veld_step_3_preprocess_clean.yaml)**
 
-```
-docker compose -f veld_step_3_preprocess_split_sentences.yaml up
-```
-
-**[./veld_step_4_preprocess_lowercase.yaml](./veld_step_4_preprocess_lowercase.yaml)** 
-
-Makes all text lowercase.
+Removes sentences which don't have enough textual content.
 
 ```
-docker compose -f veld_step_4_preprocess_lowercase.yaml up
+docker compose -f veld_step_3_preprocess_clean.yaml up
 ```
 
-**[./veld_step_5_preprocess_remove_punctuation.yaml](./veld_step_5_preprocess_remove_punctuation.yaml)** 
-
-Removes punctuation.
-
-```
-docker compose -f veld_step_5_preprocess_remove_punctuation.yaml up
-```
-
-**[./veld_step_6_preprocess_clean.yaml](./veld_step_6_preprocess_clean.yaml)** 
-
-Removes sentences which have less than 80% alphanumeric contents (i.e. random junk).
-
-```
-docker compose -f veld_step_6_preprocess_clean.yaml up
-```
-
-**[./veld_step_7_train_word2vec.yaml](./veld_step_7_train_word2vec.yaml)** 
+**[./veld_step_4_train_word2vec.yaml](./veld_step_4_train_word2vec.yaml)** 
 
 Trains word2vec models for each decade.
 
 ```
-docker compose -f veld_step_7_train_word2vec.yaml up
+docker compose -f veld_step_4_train_word2vec.yaml up
+```
+
+**[./veld_step_5_train_fasttext.yaml](./veld_step_5_train_fasttext.yaml)** 
+
+Trains fastText models for each decade.
+
+```
+docker compose -f veld_step_5_train_fasttext.yaml up
+```
+
+**[./veld_step_6_train_glove.yaml](./veld_step_6_train_glove.yaml)** 
+
+Trains fastText models for each decade.
+
+```
+docker compose -f veld_step_6_train_glove.yaml up
+```
+
+**[./veld_step_7_run_embeddings_sql_server.yaml](./veld_step_7_run_embeddings_sql_server.yaml)** 
+
+Starts a postgres + pgvector instance, which will aggregate and harmonize all word embeddings.
+
+```
+docker compose -f veld_step_7_run_embeddings_sql_server.yaml up
 ```
 
 **[./veld_step_8_analyse_semantic_drift.yaml](./veld_step_8_analyse_semantic_drift.yaml)** 
 
-Launches a jupyter notebook which analyses and compares the semantic differences of all words
+Launches a jupyter notebook (reachable at [http://localhost:8888](http://localhost:8888/) which analyses and compares the semantic differences of all words
 between decades.
 
 ```
