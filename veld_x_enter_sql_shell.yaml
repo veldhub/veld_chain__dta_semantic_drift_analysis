@@ -1,0 +1,20 @@
+x-veld:
+  chain:
+
+services:
+
+  veld_embeddings_platform_enter_sql_shell:
+    extends:
+      file: ./code/veld_code__embeddings_platform/veld_enter_shell.yaml
+      service: veld_embeddings_platform_enter_shell
+    volumes:
+      - ./data/veld_data__embeddings_platform/postgres/history/:/veld/storage/postgres/history/
+    networks:
+      - veld_postgres
+    environment:
+      POSTGRES_HOST: "veld_step_7_run_embeddings_sql_server"
+
+networks:
+  veld_postgres:
+    driver: bridge
+
