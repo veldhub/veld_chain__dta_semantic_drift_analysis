@@ -3,7 +3,7 @@ x-veld:
 
 services:
     
-  veld_step_6_preprocess_clean:
+  veld_step_3_preprocess_clean:
     extends:
       file: ./code/veld_code__nlp_generic_preprocessing/veld_preprocess_clean.yaml
       service: veld_preprocess_clean

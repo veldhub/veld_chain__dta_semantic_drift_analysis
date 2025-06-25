@@ -7,7 +7,7 @@ services:
     extends:
       file: veld_step_1_download.yaml
       service: veld_step_1_download
-
+  
   veld_step_2_extract:
     extends:
       file: veld_step_2_extract.yaml
@@ -15,52 +15,56 @@ services:
     depends_on:
       veld_step_1_download:
         condition: service_completed_successfully
-
-  veld_step_3_preprocess_split_sentences:
+  
+  veld_step_3_preprocess_clean:
     extends:
-      file: veld_step_3_preprocess_split_sentences.yaml
-      service: veld_step_3_preprocess_split_sentences
+      file: veld_step_3_preprocess_clean.yaml
+      service: veld_step_3_preprocess_clean
     depends_on:
       veld_step_2_extract:
         condition: service_completed_successfully
-
-  veld_step_4_preprocess_lowercase:
+  
+  veld_step_4_train_word2vec:
     extends:
-      file: veld_step_4_preprocess_lowercase.yaml
-      service: veld_step_4_preprocess_lowercase
+      file: veld_step_4_train_word2vec.yaml
+      service: veld_step_4_train_word2vec
     depends_on:
-      veld_step_3_preprocess_split_sentences:
-        condition: service_completed_successfully
-
-  veld_step_5_preprocess_remove_punctuation:
-    extends:
-      file: veld_step_5_preprocess_remove_punctuation.yaml
-      service: veld_step_5_preprocess_remove_punctuation
-    depends_on:
-      veld_step_4_preprocess_lowercase:
-        condition: service_completed_successfully
-
-  veld_step_6_preprocess_clean:
-    extends:
-      file: veld_step_6_preprocess_clean.yaml
-      service: veld_step_6_preprocess_clean
-    depends_on:
-      veld_step_5_preprocess_remove_punctuation:
-        condition: service_completed_successfully
-
-  veld_step_7_train_word2vec:
-    extends:
-      file: veld_step_7_train_word2vec.yaml
-      service: veld_step_7_train_word2vec
-    depends_on:
-      veld_step_6_preprocess_clean:
+      veld_step_3_preprocess_clean:
         condition: service_completed_successfully
   
+  veld_step_5_train_fasttext:
+    extends:
+      file: veld_step_5_train_fasttext.yaml
+      service: veld_step_5_train_fasttext
+    depends_on:
+      veld_step_4_train_word2vec:
+        condition: service_completed_successfully
+  
+  veld_step_6_train_glove:
+    extends:
+      file: veld_step_6_train_glove.yaml
+      service: veld_step_6_train_glove
+    depends_on:
+      veld_step_5_train_fasttext:
+        condition: service_completed_successfully
+
+  veld_step_7_run_embeddings_sql_server:
+    extends:
+      file: veld_step_7_run_embeddings_sql_server.yaml
+      service: veld_step_7_run_embeddings_sql_server
+    depends_on:
+      veld_step_6_train_glove:
+        condition: service_completed_successfully
+
   veld_step_8_analyse_semantic_drift:
     extends:
       file: veld_step_8_analyse_semantic_drift.yaml
       service: veld_step_8_analyse_semantic_drift
     depends_on:
-      veld_step_7_train_word2vec:
-        condition: service_completed_successfully
+      veld_step_7_run_embeddings_sql_server:
+        condition: service_started
+
+networks:
+  veld_postgres:
+    driver: bridge
 
