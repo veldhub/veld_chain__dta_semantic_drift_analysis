@@ -7,9 +7,8 @@ services:
       file: ./code/veld_code__embeddings_platform/veld_run_server.yaml
       service: veld_embeddings_platform_run_server
     volumes:
-      - ./data/step_7_embeddings_sql_server:/veld/storage/postgres/
-      #- ./data/step_7_embeddings_sql_server/db/:/veld/storage/postgres/db/
-      #- ./data/step_7_embeddings_sql_server/history/:/veld/storage/postgres/history/
+      - ./data/step_7_embeddings_sql_server/db/:/veld/storage/postgres/db/
+      - ./data/step_7_embeddings_sql_server/history/:/veld/storage/postgres/history/
     networks:
       - veld_postgres
 
